@@ -1,0 +1,109 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E0FFFF"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.SignUp.MainActivity" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText_emenum"
+        android:layout_alignStart="@+id/editText_emenum"
+        android:layout_alignTop="@+id/next_btn"
+        android:layout_marginLeft="29dp"
+        android:layout_marginStart="29dp"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editText_utaid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:ems="10"
+        android:hint="UTA ID"
+        android:inputType="number"
+        android:labelFor="@+id/editText_emailid" />
+
+    <EditText
+        android:id="@+id/editText_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/editText_utaid"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:hint="Username"
+        android:labelFor="@+id/editText_utaid" />
+
+    <EditText
+        android:id="@+id/editText_emailid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText_name"
+        android:layout_alignStart="@+id/editText_name"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/editText_name"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:hint="name@mavs.uta.edu"
+        android:inputType="textEmailAddress"
+        android:labelFor="@+id/editText_emenum" />
+
+    <EditText
+        android:id="@+id/editText_emename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/editText_emailid"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:hint="Emergency Contact Name"
+        android:inputType="textPersonName"
+        android:labelFor="@+id/editText_name" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText_emenum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText_emename"
+        android:layout_alignStart="@+id/editText_emename"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/editText_emename"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:hint="Emergency Contact Number"
+        android:inputType="phone"
+        android:labelFor="@+id/editText_emename" />
+
+    <Button
+        android:id="@+id/next_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText_emenum"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="#FF8C00"
+        android:text="NEXT" />
+
+</RelativeLayout>

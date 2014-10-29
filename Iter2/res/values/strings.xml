@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">UTA POLICE SERVICE</string>
+    <string name="UTA_POLICE_SERVICE">UTA POLICE SERVICE</string>
+    <string name="action_settings">Settings</string>
+    <string name="Sign_Up">SIGN UP</string>
+    <string name="Sign_In">SIGN IN</string>
+    <string name="title_activity_sign_up">SignUp</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_sign_in">SignIn</string>
+    <string name="title_activity_password">Password</string>
+    <string name="title_activity_red__button">Red_Button</string>
+    <string name="title_activity_sms">SMS</string>
+
+</resources>
