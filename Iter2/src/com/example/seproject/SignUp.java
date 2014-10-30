@@ -23,7 +23,7 @@ public class SignUp extends Activity {
 	private ProgressDialog pDialog;
 	int flag=0;
 	JSONParser jsonParser = new JSONParser();
-	private static String url = "http://129.107.232.75/test/signup.php";
+	private static String url = "http://129.107.234.52/test/signup.php";
 	private static final String SUCCESS = "success"; 
 
 	@Override

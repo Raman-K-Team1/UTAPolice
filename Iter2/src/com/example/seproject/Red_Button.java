@@ -1,12 +1,12 @@
 package com.example.seproject;
 
 import android.telephony.SmsManager;
-import android.util.Log;
 import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,8 +17,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Red_Button extends Activity implements LocationListener{
-	
+public class Red_Button extends Activity{
+
 	Button buttonSend;
 	EditText textPhoneNo;
 	EditText textSMS;
@@ -31,23 +31,24 @@ public class Red_Button extends Activity implements LocationListener{
 	String latitude,longitude; 
 	boolean gps_enabled,network_enabled;
 	LocationListener listener;
-	String coordinate;
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_red__button);
-		buttonSend = (Button) findViewById(R.id.help_btn);
 		
-		buttonSend.setOnClickListener(new OnClickListener() {
 
+		buttonSend = (Button) findViewById(R.id.help_btn);
+		buttonSend.setOnClickListener(new OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
-                //using the locationManager API to get the location coordinates 
-				listener = new Red_Button();
+				listener = new MyAsyncTask();
+				//calling the location service
 				locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-				locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
+				//requesting location updates after 3.2 miles and 50 minutes
+				locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 3000, listener);
+				new MyAsyncTask().execute();
 			}
 		});
 	}
@@ -68,49 +69,55 @@ public class Red_Button extends Activity implements LocationListener{
 		}
 		return super.onOptionsItemSelected(item);
 	}
+    //the Async Task is implementing the location listener
+	public class MyAsyncTask extends AsyncTask<Void, Void, Void> implements LocationListener{
 
-	@Override
-	public void onLocationChanged(Location location) {
-		// TODO Auto-generated method stub
-		//get the latitude and logitude and pass it to the SmsManager API to send the SMS to the predefined number
-		double latitude = location.getLatitude();
-		double longitude = location.getLongitude();
-		String coordinate = "Latitude = " + latitude + ", Longitude = " + longitude;
-		try {
-			
-			SmsManager smsManager = SmsManager.getDefault();
-			System.out.println(coordinate);
-			smsManager.sendTextMessage("+18178233972", null, "Help!!!" + coordinate, null, null);
-			
-			Toast.makeText(getApplicationContext(), "SMS Sent!",
-					Toast.LENGTH_LONG).show();
-		} catch (Exception e) {
-			Toast.makeText(getApplicationContext(),
-					"SMS faild, please try again later!",
-					Toast.LENGTH_LONG).show();
-			e.printStackTrace();
+		@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			return null;
+
+		}
+		
+		@Override
+		public void onLocationChanged(Location location) {
+			//get the latitude and the longitude
+			double latitude = location.getLatitude();
+			double longitude = location.getLongitude();
+			String coordinates = "Latitude = " + latitude + "and Longitude = " + longitude;
+			System.out.println(coordinates);
+			try {
+				//SmsManager API used for sending messages
+				SmsManager smsManager = SmsManager.getDefault();
+				//use it with the following parameters: destination address(string),source address, message, PendingIntent sentIntent, PendingIntent deliveyIntent
+				smsManager.sendTextMessage("+18178233972", null, "Help!!!" + coordinates, null, null);
+				Toast.makeText(getApplicationContext(), "SMS Sent!",
+						Toast.LENGTH_LONG).show();
+			} catch (Exception e) {
+				//sending messages failed
+				Toast.makeText(getApplicationContext(),
+						"SMS faild, please try again later!",
+						Toast.LENGTH_LONG).show();
+				e.printStackTrace();
+			}
+		}
+
+		@Override
+		public void onStatusChanged(String provider, int status, Bundle extras) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onProviderEnabled(String provider) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onProviderDisabled(String provider) {
+			// TODO Auto-generated method stub
+
 		}
 	}
-
-	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-		// TODO Auto-generated method stub
-		//is called when the provider status is changed
-		Log.d("Latitude","status");
-	}
-
-	@Override
-	public void onProviderEnabled(String provider) {
-		// TODO Auto-generated method stub
-		//is called when the provider is enabled by the user
-		Log.d("Latitude","enable");
-	}
-
-	@Override
-	public void onProviderDisabled(String provider) {
-		// TODO Auto-generated method stub
-		//is called when the provider is disabled by the user
-		Log.d("Latitude","disable");
-	}
-
 }

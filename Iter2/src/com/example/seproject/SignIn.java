@@ -73,7 +73,7 @@ public class SignIn extends Activity {
 
 			httpclient=new DefaultHttpClient();
 			//Mention the URL of path where the PHP file is mounted on the server
-			httppost= new HttpPost("http://129.107.232.75/test/login.php"); 
+			httppost= new HttpPost("http://129.107.234.52/test/login.php"); 
 			//adding data from the SignIn form and converting them into NameValue Pairs
 			nameValuePairs = new ArrayList<NameValuePair>(2);
 			nameValuePairs.add(new BasicNameValuePair("username",edittext_name.getText().toString().trim()));  
