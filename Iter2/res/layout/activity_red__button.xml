@@ -2,20 +2,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0FFFF"
+    android:background="#003399"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.seproject.Red_Button" >
+    tools:context="com.example.seproject.RedButton" >
 
     <Button
-        android:id="@+id/help_btn"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:id="@+id/friend_btn"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/kidnapped_btn"
+        android:layout_below="@+id/kidnapped_btn"
+        android:layout_marginTop="14dp"
+        android:background="#FF8C00"
+        android:text="Friend Needs Help" />
+
+    <Button
+        android:id="@+id/robbed_btn"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Help!"
-        android:textSize="50sp" />
+        android:layout_marginTop="31dp"
+        android:background="#FF8C00"
+        android:text="Robbed"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/kidnapped_btn"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/robbed_btn"
+        android:layout_below="@+id/robbed_btn"
+        android:layout_marginTop="14dp"
+        android:background="#FF8C00"
+        android:text="Kidnapped" />
+
+    <Button
+        android:id="@+id/logout_btn"
+        android:layout_width="85dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/misc_btn"
+        android:layout_marginRight="76dp"
+        android:background="#003399"
+        android:drawableLeft="@drawable/logout"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/fire_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/friend_btn"
+        android:layout_alignRight="@+id/friend_btn"
+        android:layout_below="@+id/friend_btn"
+        android:layout_marginTop="14dp"
+        android:background="#FF8C00"
+        android:text="Fire" />
+
+    <Button
+        android:id="@+id/misc_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/fire_btn"
+        android:layout_alignRight="@+id/fire_btn"
+        android:layout_below="@+id/fire_btn"
+        android:layout_marginTop="15dp"
+        android:background="#FF8C00"
+        android:text="Misc" />
 
 </RelativeLayout>

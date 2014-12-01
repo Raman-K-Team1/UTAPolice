@@ -17,6 +17,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,6 +43,10 @@ public class SignIn extends Activity {
 	TextView textview_password = null;
 	BufferedReader bufferedReader = null;
 	CheckBox c;
+	String s_username;
+	private Boolean saveLogin;
+	SharedPreferences settings;
+	SharedPreferences.Editor editor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,15 @@ public class SignIn extends Activity {
 		edittext_name = (EditText) findViewById(R.id.editText_name);
 		edittext_password = (EditText) findViewById(R.id.editText_password);
 		button_login = (Button) findViewById(R.id.submitbtn);
+		c = (CheckBox) findViewById(R.id.remembermecheckbox);
+		settings = getSharedPreferences(PREFS_NAME, 0);
+	    editor = settings.edit();
+		saveLogin = settings.getBoolean("saveLogin", false);
+		if (saveLogin == true) {
+			edittext_name.setText(settings.getString("username", ""));
+            edittext_password.setText(settings.getString("password", ""));
+            c.setChecked(true);
+        }
 		button_login.setOnClickListener(new OnClickListener() {
 		
 			@Override
@@ -73,7 +87,7 @@ public class SignIn extends Activity {
 
 			httpclient=new DefaultHttpClient();
 			//Mention the URL of path where the PHP file is mounted on the server
-			httppost= new HttpPost("http://129.107.234.52/test/login.php"); 
+			httppost= new HttpPost("http://omega.uta.edu/~pvn4560/login.php"); 
 			//adding data from the SignIn form and converting them into NameValue Pairs
 			nameValuePairs = new ArrayList<NameValuePair>(2);
 			nameValuePairs.add(new BasicNameValuePair("username",edittext_name.getText().toString().trim()));  
@@ -93,14 +107,22 @@ public class SignIn extends Activity {
 		    
 			//if the user credentials are found in the database
             if(response1.equalsIgnoreCase("User Found")){
-                 runOnUiThread(new Runnable() {
+                 if (c.isChecked()) {
+                	 editor.putBoolean("saveLogin", true);
+                     editor.putString("username", edittext_name.getText().toString().trim());
+                     editor.putString("password", edittext_password.getText().toString().trim());
+					 editor.commit();
+				  }
+                  runOnUiThread(new Runnable() {
 					 public void run() {
                         //the user has successfully logged in
 						Toast.makeText(SignIn.this,"Login Success", Toast.LENGTH_SHORT).show();
 					}
 				 });
                  //when user has successfully logged in, go to Red_Button page
-				 startActivity(new Intent(SignIn.this, Red_Button.class));
+                  Intent i = new Intent(getApplicationContext(),RedButton.class);
+                  i.putExtra("s_username",edittext_name.getText().toString().trim());
+                  startActivity(i);
 			}else{
 				showAlert();
 			}
@@ -149,7 +171,7 @@ public class SignIn extends Activity {
 	@Override
 	public void onRestart() {
 		super.onRestart();
-		startActivity(new Intent(this, Red_Button.class));
+		//startActivity(new Intent(this, Red_Button.class));
 	}
 	
 	public void onBackPressed()

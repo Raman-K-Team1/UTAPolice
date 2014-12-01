@@ -17,7 +17,7 @@ public class LaunchPage extends ActionBarActivity {
 
 		Button signUpBtn = (Button) findViewById(R.id.signupbtn);
 		Button signInBtn = (Button) findViewById(R.id.signinbtn);
-		
+
 		signUpBtn.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -28,13 +28,13 @@ public class LaunchPage extends ActionBarActivity {
 				startActivity(intent);
 			}
 		});
-		
+
 		signInBtn.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//On CLicking the SIGNIN button goes to the SignIn Page
+				//On Clicking the SIGNIN button goes to the SignIn Page
 				Intent i = new Intent(LaunchPage.this, SignIn.class);
 				startActivity(i);
 			}

@@ -25,13 +25,13 @@ public class JSONParser {
 	static JSONObject jObj = null;
 	static String json = "";
 
-    //extracting the NameValuePairs from SignUp.java and converting them into JSON format
+	//extracting the NameValuePairs from SignUp.java and converting them into JSON format
 	public JSONObject createHttpRequest(String url, String method,List<NameValuePair> nameValuePairs) {
 
 		try {
 			//execute this if the method called is a POST
 			if(method == "POST")
-			 {			
+			{			
 				DefaultHttpClient client = new DefaultHttpClient();
 				HttpPost post = new HttpPost(url);
 				post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
@@ -39,7 +39,7 @@ public class JSONParser {
 				HttpResponse response = client.execute(post);
 				HttpEntity entity = response.getEntity();
 				is = entity.getContent();
-				
+
 			}
 			//execute this if the method called is a GET
 			else if(method == "GET")
@@ -53,7 +53,7 @@ public class JSONParser {
 				HttpEntity entity = response.getEntity();
 				is = entity.getContent();
 			}			
-			
+
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (ClientProtocolException e) {
@@ -68,7 +68,7 @@ public class JSONParser {
 			String line = null;
 			while ((line = reader.readLine()) != null) 
 			{
-			 s_builder.append(line + "\n");
+				s_builder.append(line + "\n");
 			}
 			is.close();
 			json = s_builder.toString();
@@ -76,13 +76,14 @@ public class JSONParser {
 		catch (Exception e)  {
 			Log.e("Buffer Error", "Cannot convert the result " + e.toString());
 		}
+		Log.d("JSON PARSER", json);
 		try {
 			//converting to JSON format
 			jObj = new JSONObject(json);
 		} catch (JSONException e) {
 			Log.e("JSON Parser", "Cannot parse the data " + e.toString());
 		}
-		
+
 		return jObj;
 	}
 }

@@ -7,13 +7,22 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="21" />
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<permission
+        android:name="com.example.mapdemo.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.mapdemo.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <uses-feature android:name="android.hardware.location.gps" />
+	<uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS"> </uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" >
-    
+    <uses-permission android:name="android.permission.RECEIVE_SMS" >
     </uses-permission>
 
     <application
@@ -38,18 +47,24 @@
             android:name=".SignIn"
             android:label="@string/app_name" >
         </activity>
-        <activity
-            android:name=".Password"
+       <activity
+            android:name=".NewPassword"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".Red_Button"
+            android:name=".RedButton"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".SMS"
-            android:label="@string/title_activity_sms" >
+            android:name=".JSONParser"
+            android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".RandomPassword"
+            android:label="@string/app_name" >
+        </activity>
+        <receiver android:name=".MyReceiver" />
+        <service android:name=".UpdateService" />
     </application>
 
 </manifest>
